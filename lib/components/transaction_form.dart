@@ -23,6 +23,8 @@ class TransactionForm extends StatelessWidget {
             ),
             TextField(
               controller: valueController,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               decoration: const InputDecoration(
                 labelText: 'Value (R\$)',
               ),
