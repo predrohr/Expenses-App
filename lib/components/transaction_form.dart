@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 
 class TransactionForm extends StatelessWidget {
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final void Function(String, double) onSubmit;
 
-  const TransactionForm(this.onSubmit, {super.key});
+  TransactionForm(this.onSubmit, {super.key});
+
+  _submitForm() {
+    final title = titleController.text;
+    final value = double.tryParse(valueController.text) ?? 0;
+
+    if (title.isEmpty || value < 0) {
+      return;
+    }
+    onSubmit(title, value);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final titleController = TextEditingController();
-    final valueController = TextEditingController();
     return Card(
       elevation: 5,
       child: Padding(
@@ -17,6 +28,7 @@ class TransactionForm extends StatelessWidget {
           children: [
             TextField(
               controller: titleController,
+              onSubmitted: (_) => _submitForm(),
               decoration: const InputDecoration(
                 labelText: 'Title',
               ),
@@ -25,6 +37,7 @@ class TransactionForm extends StatelessWidget {
               controller: valueController,
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => _submitForm(),
               decoration: const InputDecoration(
                 labelText: 'Value (R\$)',
               ),
@@ -33,18 +46,13 @@ class TransactionForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  child: const Text(
-                    'New tansaction',
-                    style: TextStyle(
-                      color: Colors.purple,
+                    child: const Text(
+                      'New tansaction',
+                      style: TextStyle(
+                        color: Colors.purple,
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    final title = titleController.text;
-                    final value = double.tryParse(valueController.text) ?? 0;
-                    onSubmit(title, value);
-                  },
-                ),
+                    onPressed: () => _submitForm()),
               ],
             )
           ],

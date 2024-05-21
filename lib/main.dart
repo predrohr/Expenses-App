@@ -22,6 +22,9 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Personal expenses'),
+        actions: const [
+          IconButton(onPressed: null, icon: Icon(Icons.add)),
+        ],
       ),
       body: const SingleChildScrollView(
         child: Column(
@@ -38,6 +41,11 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: const FloatingActionButton(
+        onPressed: null,
+        child: Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
