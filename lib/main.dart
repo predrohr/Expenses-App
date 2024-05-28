@@ -2,17 +2,39 @@ import 'package:expenses/components/transaction_form.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'models/transaction.dart';
-import 'components/transaction_form.dart';
 import 'components/transaction_list.dart';
 
-void main() => runApp(const ExpensesApp());
+void main() => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
-  const ExpensesApp({super.key});
+  ExpensesApp({super.key});
+  final ThemeData tema = ThemeData();
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomeApp(),
+    return MaterialApp(
+      home: const MyHomeApp(),
+      theme: tema.copyWith(
+        colorScheme: tema.colorScheme.copyWith(
+          primary: Colors.purple,
+          secondary: Colors.amber,
+        ),
+        textTheme: tema.textTheme.copyWith(
+          titleLarge: const TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -45,6 +67,8 @@ class _MyHomeAppState extends State<MyHomeApp> {
     setState(() {
       _transactions.add(newTransaction);
     });
+
+    Navigator.of(context).pop();
   }
 
   _openTransactionFormModal(BuildContext context) {
