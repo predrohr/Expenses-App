@@ -47,14 +47,14 @@ class MyHomeApp extends StatefulWidget {
 }
 
 class _MyHomeAppState extends State<MyHomeApp> {
-  final _transactions = [
-    Transaction(
-        id: 't1',
-        title: 'Novo tênis de corrida',
-        value: 310.76,
-        date: DateTime.now()),
-    Transaction(
-        id: 't2', title: 'Conta de luz', value: 211.30, date: DateTime.now()),
+  final List<Transaction> _transactions = [
+    // Transaction(
+    //     id: 't1',
+    //     title: 'Novo tênis de corrida',
+    //     value: 310.76,
+    //     date: DateTime.now()),
+    // Transaction(
+    //     id: 't2', title: 'Conta de luz', value: 211.30, date: DateTime.now()),
   ];
 
   _addTransaction(String title, double value) {
@@ -93,13 +93,13 @@ class _MyHomeAppState extends State<MyHomeApp> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             const SizedBox(
-              width: double.infinity,
               child: Card(
                 color: Colors.blue,
                 elevation: 5,
-                child: Text('Grafic'),
+                child: Text('Graphic'),
               ),
             ),
             TransactionList(_transactions),
